@@ -16,7 +16,11 @@ app.get('/ping', (req, res) => {
 });
 
 app.use(bodyParser.json());
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+    origin: "https://virtualassistant-03vg.onrender.com", // kaha se req aa rha h
+    credentials: true
+}))
 app.use('/auth', AuthRouter);
 app.use('/products', ProductRouter);
 app.use('/api/openai', OpenAIRouter);
