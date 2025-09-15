@@ -131,6 +131,12 @@
   background: linear-gradient(to right, #2563eb, #4f46e5);
 }
 
+.generate-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: linear-gradient(to right, #016695, #514ce7);
+}
+
 .split-layout {
   display: flex;
   height: 100%;
@@ -150,7 +156,6 @@
   width: 75%;
   display: flex;
   flex-direction: column;
-  /* padding-left: 20px; */
 }
 
 .top-buttons {
@@ -167,47 +172,13 @@
   border-radius: 6px;
   font-weight: 500;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
 .code-tab:hover {
   background-color: #c7d2fe;
 }
 
-.preview-box {
-  background-color: #f3f4f6;
-  padding: 14px;
-  border-left: 4px solid #3b82f6;
-  border-radius: 8px;
-  color: #1f2937;
-}
-
-.dark .preview-box {
-  background-color: #374151;
-  color: #f9fafb;
-  border-left-color: #60a5fa;
-}
-.generate-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background: linear-gradient(to right, #016695, #514ce7);
-}
-
-/* Wider input and button inside left split */
-.left-split .input-section.bottom .prompt-input {
-  width: 80%;
-  max-width: none;
-}
-
-.left-split .input-section.bottom .generate-button {
-  width: 60%;
-  margin-top: 10px;
-}
-
-.website-preview {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
 .code-tab.active {
   background-color: #333;
   color: white;
@@ -229,34 +200,57 @@
 }
 
 .copy-button.copied {
-  background-color: #4caf50 !important; /* Green */
+  background-color: #4caf50 !important;
   color: white;
   font-weight: bold;
+}
+
+.preview-box {
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+  background-color: #f3f4f6;
+  border-left: 4px solid #3b82f6;
+  border-radius: 8px;
+}
+
+.dark .preview-box {
+  background-color: #1e1e1e;
+  border-left-color: #60a5fa;
 }
 
 .code-scroll {
   height: 100%;
   overflow-y: auto;
-  padding: 1rem;
-  background: #f9f9f9;
   border-radius: 8px;
-  font-size: 14px;
-  line-height: 1.5;
-  white-space: pre-wrap;
-  word-break: break-word;
 }
 
-.dark .code-scroll {
-  background: #1f2937;
-  color: #f3f4f6;
+/* Wider input and button inside left split */
+.left-split .input-section.bottom .prompt-input {
+  width: 80%;
+  max-width: none;
 }
 
+.left-split .input-section.bottom .generate-button {
+  width: 60%;
+  margin-top: 10px;
+}
+
+.website-preview {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
 
 .status-message {
   padding: 1rem;
   font-size: 1.2rem;
   font-weight: 500;
   color: #374151;
+}
+
+.dark .status-message {
+  color: #f3f4f6;
 }
 
 .status-text strong {

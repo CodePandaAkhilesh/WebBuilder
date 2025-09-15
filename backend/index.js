@@ -7,6 +7,7 @@ const ProductRouter = require('./Routes/ProductRouter');
 const OpenAIRouter = require('./Routes/OpenAIRouter');
 
 require('dotenv').config();
+console.log("OPENROUTER_API_KEY:", process.env.OPENROUTER_API_KEY);
 require('./Models/db');
 const PORT = process.env.PORT || 8080;
 

@@ -1,10 +1,21 @@
 const axios = require("axios");
 require("dotenv").config();
 
+/**
+ * generateCode Controller
+ * -----------------------
+ * Accepts a prompt from the frontend and uses the OpenRouter API (GPT-3.5-turbo)
+ * to generate complete HTML, CSS, and JS code for a functional website.
+ *
+ * The AI prompt includes strict formatting instructions to ensure clean, 
+ * separated code blocks for HTML, CSS, and JavaScript.
+ */
 const generateCode = async (req, res) => {
+  
   const { prompt } = req.body;
 
   try {
+    // Call OpenRouter API to get AI-generated website code
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
@@ -44,23 +55,24 @@ Your task is to generate a fully functional and complete website using **HTML, C
 
 Example use cases: portfolio, Swiggy clone, calculator, to-do app, blog, e-commerce store, hotel booking, weather app, resume builder, etc.
 
-⚠️ Only return the code. Do not explain or include any text outside the code blocks.`
-,
+⚠️ Only return the code. Do not explain or include any text outside the code blocks.`,
           },
         ],
       },
       {
         headers: {
-          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`, // API key stored in .env
           "Content-Type": "application/json",
-          "HTTP-Referer": "http://localhost:3000",
+          "HTTP-Referer": "http://localhost:3000", // Optional for API tracking
         },
       }
     );
 
+    // Extract the code content from API response
     const code = response.data.choices[0].message.content;
     res.json({ code });
   } catch (error) {
+    // Log error and return response
     console.error(
       "Error generating code:",
       error.response?.data || error.message

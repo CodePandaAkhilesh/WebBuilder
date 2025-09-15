@@ -6,6 +6,10 @@ const ensureAuthenticated = (req, res, next) => {
         return res.status(403)
             .json({ message: 'Unauthorized, JWT token is require' });
     }
+    // ✅ Remove 'Bearer ' if it exists
+    if (auth.startsWith('Bearer ')) {
+        auth = auth.slice(7);
+    }
     try {
         const decoded = jwt.verify(auth, process.env.JWT_SECRET);
         req.user = decoded;
